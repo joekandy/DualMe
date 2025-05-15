@@ -1,0 +1,20 @@
+model:
+  image_size: 768
+  steps: 30
+  scale: 2.5
+  seed: 42
+
+app:
+  host: "0.0.0.0"
+  port: 7860
+  share: true
+  enable_queue: true
+
+garment_types:
+  - dressed
+  - bottom
+  - upper
+
+paths:
+  checkpoints: "checkpoints/"
+  examples: "examples/" 

@@ -1,0 +1,64 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Large files and directories
+ckpts/
+checkpoints/
+dataset/
+*.pkl
+*.pth
+*.zip
+*.dll
+*.lib
+*.onnx
+*.bin
+*.h5
+*.hdf5
+*.model
+*.weights
+*.pt
+*.ckpt
+*.safetensors
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+temp_*.png
+
+# Git LFS
+.git/lfs/
