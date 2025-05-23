@@ -1,7 +1,7 @@
 ﻿# Python
 __pycache__/
 *.py[cod]
-*.class
+*$py.class
 *.so
 .Python
 build/
@@ -62,3 +62,14 @@ temp_*.png
 
 # Git LFS
 .git/lfs/
+
+# Model files (handled by Git LFS)
+*.pth
+*.pt
+*.ckpt
+*.bin
+
+# Project specific
+DUALME-DEF/
+workspace/
+backups/

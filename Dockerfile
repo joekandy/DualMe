@@ -1,26 +1,52 @@
 FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
 
+# Imposta le variabili d'ambiente
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV CUDA_VISIBLE_DEVICES=0
+
 # Installa le dipendenze di sistema
 RUN apt-get update && apt-get install -y \
     git \
+    wget \
+    unzip \
     libgl1-mesa-glx \
     libglib2.0-0 \
+    nvidia-cuda-toolkit \
     && rm -rf /var/lib/apt/lists/*
 
-# Imposta la directory di lavoro
-WORKDIR /app
+# Crea e imposta la directory di lavoro
+WORKDIR /workspace
 
 # Copia i file del progetto
-COPY . .
+COPY requirements.txt .
+COPY setup.py .
+COPY dualme/ dualme/
+
+# Crea la directory per i modelli e copia i modelli
+RUN mkdir -p /workspace/models
+COPY virtual_tryon.pth /workspace/models/upper_model.pth
+COPY virtual_tryon_dc.pth /workspace/models/dressed_model.pth
 
 # Installa le dipendenze Python
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -e .
 
-# Esponi la porta per Gradio
+# Crea le directory necessarie nel volume persistente
+RUN mkdir -p /workspace/models \
+    /workspace/data \
+    /workspace/logs \
+    /workspace/checkpoints
+
+# Script di avvio
+COPY start.sh /workspace/
+RUN chmod +x /workspace/start.sh
+
+# Espone la porta per Gradio
 EXPOSE 7860
 
-# Comando per avviare l'applicazione
-CMD ["python", "-m", "dualme.app.gradio_app"]
+# Comando di avvio
+CMD ["/workspace/start.sh"]
 
 ## Note
 
