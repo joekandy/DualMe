@@ -38,4 +38,7 @@ while true; do
     # Se l'applicazione si chiude, aspetta 5 secondi prima di riavviare
     echo "Application stopped. Restarting in 5 seconds..."
     sleep 5
-done 
+done
+
+# Avvio DualMe su RunPod
+python3 -m dualme.app.gradio_app 

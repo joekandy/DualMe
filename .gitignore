@@ -71,5 +71,7 @@ temp_*.png
 
 # Project specific
 DUALME-DEF/
+DualMe-VTO/
+Leffa/
 workspace/
 backups/

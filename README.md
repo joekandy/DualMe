@@ -1,6 +1,6 @@
-# Virtual Try-On App
+# DualMe Virtual Try-On App
 
-Applicazione di Virtual Try-On basata su Leffa, ottimizzata per il deployment su RunPod.
+Applicazione di Virtual Try-On basata su DualMe, ottimizzata per il deployment su RunPod.
 
 ## 🚀 Deployment su RunPod
 
@@ -16,8 +16,8 @@ Applicazione di Virtual Try-On basata su Leffa, ottimizzata per il deployment su
 
 3. **Avvia il container**
    ```bash
-   docker build -t vto-app .
-   docker run --gpus all -p 7860:7860 vto-app
+   docker build -t dualme-vto-app .
+   docker run --gpus all -p 7860:7860 dualme-vto-app
    ```
 
 4. **Accedi all'interfaccia**
@@ -28,15 +28,13 @@ Applicazione di Virtual Try-On basata su Leffa, ottimizzata per il deployment su
 
 ```
 VTO/
-├── vto_app.py          # Applicazione principale
-├── requirements.txt    # Dipendenze Python
-├── Dockerfile         # Configurazione Docker
-├── ckpts/            # Directory modelli
-│   ├── densepose/
-│   ├── schp/
+├── dualme/app/main.py        # Applicazione principale DualMe
+├── requirements.txt         # Dipendenze Python
+├── Dockerfile               # Configurazione Docker
+├── models/                  # Directory modelli
 │   ├── humanparsing/
-│   └── openpose/
-└── examples/         # Immagini di esempio
+│   └── ...
+└── examples/                # Immagini di esempio
 ```
 
 ## 📝 Uso
@@ -66,9 +64,23 @@ VTO/
    - Diminuisci il numero di steps
 
 3. **Errore modelli**
-   - Verifica che tutti i modelli siano nella cartella `ckpts`
+   - Verifica che tutti i modelli siano nella cartella `models`
    - Controlla i permessi delle cartelle
 
 ## 📞 Supporto
 
-Per problemi o domande, apri una issue su GitHub. 
+Per problemi o domande, apri una issue su GitHub.
+
+## Avvio DualMe su RunPod
+
+1. Assicurati di avere tutte le dipendenze installate:
+   ```
+pip install -r requirements.txt
+   ```
+2. Avvia l'applicazione:
+   ```
+sh start.sh
+   ```
+3. L'app sarà accessibile via Gradio sull'host e porta specificati in config.yaml.
+
+Per abilitare Neptune, modifica il flag NEPTUNE_ENABLED nel codice (disabilitato di default). 

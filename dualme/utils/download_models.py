@@ -4,25 +4,23 @@ import torch
 from pathlib import Path
 
 def download_models():
-    """Scarica i modelli necessari per il VTO"""
+    """Scarica i modelli necessari per il VTO DualMe (senza pose)"""
     # Crea la directory dei modelli se non esiste
     model_dir = Path("/workspace/models")
     model_dir.mkdir(parents=True, exist_ok=True)
     
-    # URL dei modelli
+    # URL dei modelli (aggiorna qui se hai un repo HuggingFace personale)
     model_urls = {
-        "vto_upper": "https://huggingface.co/franciszzj/Leffa/resolve/main/virtual_tryon.pth",
-        "vto_dressed": "https://huggingface.co/franciszzj/Leffa/resolve/main/virtual_tryon_dc.pth",
-        "human_parsing": "https://huggingface.co/franciszzj/Leffa/resolve/main/humanparsing/human_parsing_model.pth",
-        "pose_estimation": "https://huggingface.co/franciszzj/Leffa/resolve/main/openpose/body_pose_model.pth"
+        "vto_upper": "https://huggingface.co/dualme/DualMe/resolve/main/virtual_tryon.pth",
+        "vto_dressed": "https://huggingface.co/dualme/DualMe/resolve/main/virtual_tryon_dc.pth",
+        "human_parsing": "https://huggingface.co/dualme/DualMe/resolve/main/humanparsing/human_parsing_model.pth"
     }
     
     # Nomi dei file di output
     output_names = {
         "vto_upper": "upper_model.pth",
         "vto_dressed": "dressed_model.pth",
-        "human_parsing": "human_parsing_model.pth",
-        "pose_estimation": "pose_model.pth"
+        "human_parsing": "human_parsing_model.pth"
     }
     
     for model_type, url in model_urls.items():

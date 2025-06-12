@@ -9,9 +9,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def process_image(human_img_path, garm_img_path):
-    """Processa le immagini usando il modello LeFFA"""
+    """Processa le immagini usando il modello DualMe"""
     try:
-        client = Client("franciszzj/Leffa")
+        client = Client("dualme/DualMe")  # Aggiorna qui se hai un repo HuggingFace personale
         
         result = client.predict(
             src_image_path=handle_file(human_img_path),
@@ -23,7 +23,7 @@ def process_image(human_img_path, garm_img_path):
             vt_model_type="viton_hd",
             vt_garment_type="upper_body",
             vt_repaint=False,
-            api_name="/leffa_predict_vt"
+            api_name="/dualme_predict_vt"
         )
         
         generated_image_path = result[0]
@@ -36,8 +36,8 @@ def process_image(human_img_path, garm_img_path):
 
 def create_interface():
     """Crea l'interfaccia Gradio"""
-    with gr.Blocks(title="LeFFA Test") as demo:
-        gr.HTML("<center><h1>LeFFA Virtual Try-On Test</h1></center>")
+    with gr.Blocks(title="DualMe Test") as demo:
+        gr.HTML("<center><h1>DualMe Virtual Try-On Test</h1></center>")
         gr.HTML("<center><p>Carica un'immagine di una persona e un'immagine di un capo d'abbigliamento ✨</p></center>")
         
         with gr.Row():
