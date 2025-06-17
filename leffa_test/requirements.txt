@@ -1,4 +1,0 @@
-gradio
-gradio-client
-Pillow
-opencv-python 
